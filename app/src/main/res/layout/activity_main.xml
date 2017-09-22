@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_main"
+    tools:context="com.example.qthjen.mynote.Activity.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:background="@color/colorPrimary"
+        android:id="@+id/tbar_main"
+        app:title="@string/home"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:layout_above="@+id/fragmen_nodeAndReminders"
+        android:layout_below="@+id/tbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_addNote"
+                android:textSize="40sp"
+                android:text="@string/add_note"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <fragment
+        android:name="com.example.qthjen.mynote.Fragment.FragmentNodeAndReminder"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/fragmen_nodeAndReminders"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/fragmen_nodeAndReminders"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
+        android:src="@drawable/plus"
+        android:visibility="visible"
+        android:id="@+id/fab_mainPlus"
+        app:backgroundTint="@color/bt_no"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_mainUnPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/fragmen_nodeAndReminders"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
+        android:src="@drawable/unchecked"
+        android:visibility="invisible"
+        app:backgroundTint="@color/bt_no"/>
+
+    <include
+        layout="@layout/fab_inner" />
+
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        app:titleTextColor="@color/white"
+        app:title="@string/tbar_addnote"
+        android:id="@+id/tbar_addnote"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/white_overlay"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:layout_weight="0.5"
+                android:name="com.example.qthjen.mynote.Fragment.FragmentTitle"
+                android:id="@+id/fragmen_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+
+            <fragment
+                android:name="com.example.qthjen.mynote.Fragment.FragmentNoteAdd"
+                android:layout_weight="1.5"
+                android:id="@+id/fragmen_addnote"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</LinearLayout>

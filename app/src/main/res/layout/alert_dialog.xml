@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="340dp"
+    android:layout_height="200dp"
+    android:weightSum="5">
+
+    <LinearLayout
+        android:background="@color/fab_reminder"
+        android:orientation="horizontal"
+        android:layout_weight="2.5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <TextView
+            android:textColor="@color/text"
+            android:id="@+id/tv_titleDialog"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:gravity="center_vertical|left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1.5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <TextView
+            android:id="@+id/tv_messageDialog"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="20sp"
+            android:gravity="center_vertical|left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1.0"
+        android:gravity="right|center_vertical"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <Button
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button_yes"
+            android:id="@+id/bt_yesDialog"
+            android:textAllCaps="false"
+            android:text="@string/yes"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:background="@drawable/button_no"
+            android:id="@+id/bt_noDialog"
+            android:textAllCaps="false"
+            android:text="@string/no"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>

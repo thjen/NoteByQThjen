@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:weightSum="2">
+
+    <LinearLayout
+        android:layout_margin="15dp"
+        android:background="@drawable/layout_white_radius"
+        android:layout_weight="1.5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:background="@drawable/noteadd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_note"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <Button
+            android:id="@+id/bt_add"
+            android:text="@string/add"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:background="@drawable/button_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

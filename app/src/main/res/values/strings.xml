@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MyNote</string>
+    <string name="weather">Today</string>
+    <string name="weather_country">Country</string>
+    <string name="weather_status">Status</string>
+    <string name="weather_tempa">Temperature</string>
+    <string name="weather_humidity">Humidity</string>
+    <string name="add_note">Add a note</string>
+    <string name="tbar_addnote">Add a note</string>
+    <string name="title">Title</string>
+    <string name="add">Add</string>
+    <string name="note">Notes</string>
+    <string name="calendar">Calendar</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="home">Home</string>
+
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbar_notes"
+        app:title="@string/note"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/ll_edittext"
+        android:layout_below="@+id/tbar_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_note_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_above="@+id/ll_image"
+        android:layout_below="@+id/ll_edittext"
+        android:id="@+id/fragment_father"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_image"
+        android:background="@color/text"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/iv_trashNote"
+            android:background="@color/colorPrimary"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/bestdelete"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/iv_takeImage"
+            android:background="@color/colorPrimary"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/takephoto"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

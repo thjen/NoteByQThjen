@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/layout_weather"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blur_weather"
+        app:blurOverlayColor="@color/colorOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:targetApi="LOLLIPOP">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            
+            <TextView
+                android:layout_marginTop="30dp"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:text="Today"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:background="@drawable/spinner"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/spinner"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+
+            </Spinner>
+
+            <TextView
+                android:id="@+id/tv_country"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:text="@string/weather_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:text="@string/weather_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/iv_status"
+                android:layout_marginTop="10dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/tv_temperature"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:text="@string/weather_tempa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            
+            <TextView
+                android:id="@+id/tv_humidity"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:text="@string/weather_humidity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/iv_next"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/next"/>
+
+        </LinearLayout>
+
+    </eightbitlab.com.blurview.BlurView>
+
+</LinearLayout>
+
