@@ -17,15 +17,86 @@
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
-        android:background="@color/colorPrimary"
+        android:weightSum="2"
         android:layout_above="@+id/fragmen_nodeAndReminders"
         android:layout_below="@+id/tbar_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <FrameLayout
+            android:layout_weight="0.7"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp">
+
+            <LinearLayout
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:weightSum="2"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1.85"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:hint="@string/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/autoComplete"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageView
+                        android:layout_weight="0.15"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/search"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mynote"
+                android:textSize="20sp"
+                android:textColor="@color/text"
+                android:paddingLeft="85dp"/>
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="bottom|left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plus"
+                android:visibility="visible"
+                android:id="@+id/fab_mainPlus"
+                app:backgroundTint="@color/fab_main"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_marginTop="20dp"
+            android:layout_weight="1.3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
 
             <TextView
                 android:id="@+id/tv_addNote"
@@ -38,7 +109,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview_notes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
             </android.support.v7.widget.RecyclerView>
 
@@ -52,32 +123,5 @@
         android:id="@+id/fragmen_nodeAndReminders"
         android:layout_width="match_parent"
         android:layout_height="48dp"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_above="@+id/fragmen_nodeAndReminders"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="15dp"
-        android:src="@drawable/plus"
-        android:visibility="visible"
-        android:id="@+id/fab_mainPlus"
-        app:backgroundTint="@color/bt_no"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_mainUnPlus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_above="@+id/fragmen_nodeAndReminders"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="15dp"
-        android:src="@drawable/unchecked"
-        android:visibility="invisible"
-        app:backgroundTint="@color/bt_no"/>
-
-    <include
-        layout="@layout/fab_inner" />
 
 </RelativeLayout>

@@ -17,25 +17,26 @@ public class DataBase extends SQLiteOpenHelper {
         database.execSQL(sql);
     }
 
-    public void INSERT_ITEMS(String title, String note, String date) {
+    public void UPDATE_ITEMS( String title, String note, String date, byte[] image, int id ) {
 
         SQLiteDatabase database = getWritableDatabase();
-        String sql = "INSERT INTO Notes VALUES(null, ?, ?, ?)";
-        SQLiteStatement statement = database.compileStatement(sql);
-        statement.clearBindings();
+        String sqlUpdate = "UPDATE Notes SET Title = ?, Note = ?, Date = ?, Image = ?  WHERE Id = '" + id + "'";
+        SQLiteStatement statement = database.compileStatement(sqlUpdate);
 
         statement.bindString(1, title);
         statement.bindString(2, note);
         statement.bindString(3, date);
+        statement.bindBlob(4, image);
 
-        statement.executeInsert();
+        statement.execute();
+        database.close();
 
     }
 
-    public void INSERT_NOTEIMAGE(String title, String note, String date, byte[] image) {
+    public void INSERT_ITEMS(String title, String note, String date, byte[] image) {
 
         SQLiteDatabase database = getWritableDatabase();
-        String sql = "INSERT INTO Notesimage VALUES(null, ?,?,?,?)";
+        String sql = "INSERT INTO Notes VALUES(null, ?, ?, ?, ?)";
         SQLiteStatement statement = database.compileStatement(sql);
         statement.clearBindings();
 

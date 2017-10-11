@@ -8,11 +8,17 @@
     <string name="add_note">Add a note</string>
     <string name="tbar_addnote">Add a note</string>
     <string name="title">Title</string>
+    <string name="notee">Note</string>
     <string name="add">Add</string>
     <string name="note">Notes</string>
     <string name="calendar">Calendar</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="home">Home</string>
+    <string name="takePhoto">Take Photo</string>
+    <string name="photoLibrary">Photo Library</string>
+    <string name="mynote">My notes</string>
+    <string name="search">Search</string>
+
 
 </resources>

@@ -1,48 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
-        app:titleTextColor="@color/white"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@color/text"
         app:title="@string/tbar_addnote"
         android:id="@+id/tbar_addnote"
-        android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.Toolbar>
 
-    <android.support.design.widget.CoordinatorLayout
+    <LinearLayout
+        android:weightSum="2"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:background="@color/white_overlay"
-            android:weightSum="2"
+        <fragment
+            android:layout_weight="0.5"
+            android:name="com.example.qthjen.mynote.Fragment.FragmentTitle"
+            android:id="@+id/fragmen_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"/>
 
-            <fragment
-                android:layout_weight="0.5"
-                android:name="com.example.qthjen.mynote.Fragment.FragmentTitle"
-                android:id="@+id/fragmen_title"
+        <FrameLayout
+            android:id="@+id/ll_addImage"
+            android:layout_weight="1.3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"/>
+                android:layout_height="match_parent">
 
-            <fragment
-                android:name="com.example.qthjen.mynote.Fragment.FragmentNoteAdd"
-                android:layout_weight="1.5"
-                android:id="@+id/fragmen_addnote"
+                <ScrollView
+                    android:fillViewport="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:hint="@string/notee"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:id="@+id/et_note"
+                                android:layout_margin="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <ImageView
+                            android:layout_margin="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/image_add"/>
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+            <LinearLayout
+                android:layout_weight="0.2"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"/>
+                android:layout_height="0dp">
 
-        </LinearLayout>
+                <Button
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="1.5"
+                    android:id="@+id/bt_add"
+                    android:text="@string/add"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_addleft"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
 
-    </android.support.design.widget.CoordinatorLayout>
+                <Button
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="1.5"
+                    android:id="@+id/bt_addImage"
+                    android:text="Add Image"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_addright"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

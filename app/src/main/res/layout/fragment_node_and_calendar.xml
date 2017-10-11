@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
 
     <LinearLayout
-        android:background="@color/text"
-        android:weightSum="2"
+        android:background="@color/colorPrimary"
+        android:weightSum="3"
         android:id="@+id/layout_button"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
@@ -14,21 +17,28 @@
         android:layout_height="48dp">
 
         <ImageView
-            android:background="@color/colorPrimary"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
             android:src="@drawable/note"
-            android:id="@+id/bt_notes"
+            android:id="@+id/iv_notes"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent" />
 
         <ImageView
-            android:background="@color/colorPrimary"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:src="@drawable/reminder"
+            android:id="@+id/iv_reminder"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
             android:src="@drawable/calendar"
-            android:id="@+id/bt_remenders"
+            android:id="@+id/iv_calendar"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent" />

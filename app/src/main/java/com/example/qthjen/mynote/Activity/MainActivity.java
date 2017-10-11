@@ -2,15 +2,19 @@ package com.example.qthjen.mynote.Activity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +25,15 @@ import com.example.qthjen.mynote.Fragment.FragmentNodeAndReminder;
 import com.example.qthjen.mynote.Model.Notes;
 import com.example.qthjen.mynote.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FloatingActionButton fab_mainPlus, fab_mainUnPlus, fab_add, fab_reminder;
-    private Animation fabOne, fabTwo, fabOneCancel, fabTwoCancel;
+    private FloatingActionButton fab_mainPlus;
+
+    AutoCompleteTextView autoComplete;
 
     public static TextView tv_addNote;
     public static RecyclerView recyclerView_note;
@@ -42,24 +49,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fabOne = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fab_one);
-        fabTwo = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fab_two);
-
-        fabOneCancel = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fab_one_cancel);
-        fabTwoCancel = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fab_two_cancel);
-
-
         FindView();
 
         recyclerView_note.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView_note.setLayoutManager(layoutManager);
         recyclerView_note.setItemAnimator(new DefaultItemAnimator());
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, layoutManager.getOrientation());
+        recyclerView_note.addItemDecoration(dividerItemDecoration);
+
         arrayNote = new ArrayList<Notes>();
         adapterNotes = new AdapterNotes(MainActivity.this, arrayNote, R.layout.row_adapter_note);
 
         dataBase = new DataBase(this, "mynote.sqlite", null, 1);
-        dataBase.QueryData("CREATE TABLE IF NOT EXISTS Notes(Id INTEGER PRIMARY KEY AUTOINCREMENT, Title VARCHAR, Note VARCHAR, Date VARCHAR)");
+        dataBase.QueryData("CREATE TABLE IF NOT EXISTS Notes(Id INTEGER PRIMARY KEY AUTOINCREMENT, Title VARCHAR, Note VARCHAR, Date VARCHAR, Image BLOB)");
 
         EventClick();
 
@@ -67,6 +71,44 @@ public class MainActivity extends AppCompatActivity {
 
         CheckData();
         processedFragment();
+        SetupCompleteTextView();
+
+    }
+    /** search **/
+    private void SetupCompleteTextView() {
+
+        String array[] = new String[arrayNote.size()];
+        int Id[] = new int[arrayNote.size()];
+        String note[] = new String[arrayNote.size()];
+        String Date[] = new String[arrayNote.size()];
+        byte[] Image[] = new byte[arrayNote.size()][arrayNote.size()];
+
+        /** hashMap để put dữ liệu theo key trong autoCompleteTextView vì không thể put theo position hay id **/
+        Notes notes;
+        final HashMap map = new HashMap();
+        
+        for (int i = 0; i < arrayNote.size(); i++) {
+            array[i] = arrayNote.get(i).getTitle().trim();
+            Id[i] = arrayNote.get(i).getId();
+            note[i] = arrayNote.get(i).getNote().trim();
+            Date[i] = arrayNote.get(i).getDate().trim();
+            Image[i] = arrayNote.get(i).getImage();
+            notes = new Notes(Id[i], array[i], note[i], Date[i], Image[i]);
+            map.put(array[i], notes);
+        }
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, array);
+        autoComplete.setAdapter(arrayAdapter);
+        autoComplete.setThreshold(1);
+
+        autoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this, ActivityNotes.class);
+                intent.putExtra("mynotes", (Serializable) map.get(autoComplete.getAdapter().getItem(i)));
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -86,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
         Cursor cursor = dataBase.GetData("SELECT * FROM Notes");
         while (cursor.moveToNext()) {
-            arrayNote.add(new Notes(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)));
+            arrayNote.add(new Notes(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getBlob(4)));
         }
         adapterNotes.notifyDataSetChanged();
         recyclerView_note.setAdapter(adapterNotes);
@@ -96,10 +138,16 @@ public class MainActivity extends AppCompatActivity {
     private void processedFragment() {
 
         FragmentNodeAndReminder fragmentNodeAndReminder = (FragmentNodeAndReminder) getFragmentManager().findFragmentById(R.id.fragmen_nodeAndReminders);
-        fragmentNodeAndReminder.bt_reminders.setOnClickListener(new View.OnClickListener() {
+        fragmentNodeAndReminder.iv_calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, Calendar.class));
+            }
+        });
+        fragmentNodeAndReminder.iv_reminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Reminders.class));
             }
         });
 
@@ -110,32 +158,7 @@ public class MainActivity extends AppCompatActivity {
         fab_mainPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Show();
-                Move();
-            }
-        });
-
-        fab_mainUnPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Hide();
-                Back();
-            }
-        });
-
-        fab_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, AddNote.class));
-                Hide();
-            }
-        });
-
-        fab_reminder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Reminder", Toast.LENGTH_SHORT).show();
-                Hide();
             }
         });
 
@@ -148,62 +171,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void Hide() {
-
-        fab_add.hide();
-        fab_reminder.hide();
-
-        fab_mainPlus.setVisibility(View.VISIBLE);
-        fab_mainUnPlus.setVisibility(View.INVISIBLE);
-
-    }
-
-    private void Show() {
-
-        fab_reminder.show();
-        fab_add.show();
-
-        fab_mainPlus.setVisibility(View.INVISIBLE);
-        fab_mainUnPlus.setVisibility(View.VISIBLE);
-
-    }
-
     private void FindView() {
 
-        fab_mainUnPlus = (FloatingActionButton) findViewById(R.id.fab_mainUnPlus);
+        autoComplete = (AutoCompleteTextView) findViewById(R.id.autoComplete);
+
         fab_mainPlus = (FloatingActionButton) findViewById(R.id.fab_mainPlus);
-        fab_reminder = (FloatingActionButton) findViewById(R.id.fab_reminder);
-        fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
         tv_addNote = (TextView) findViewById(R.id.tv_addNote);
         recyclerView_note = (RecyclerView) findViewById(R.id.recyclerview_notes);
-
-    }
-
-    private void Move() {
-
-        FrameLayout.LayoutParams params1 = (FrameLayout.LayoutParams) fab_add.getLayoutParams();
-        params1.bottomMargin = (int) (fab_add.getWidth() * 2.3);
-        fab_add.setLayoutParams(params1);
-        fab_add.startAnimation(fabOne);
-
-        FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) fab_reminder.getLayoutParams();
-        params2.bottomMargin = (int) (fab_reminder.getWidth() * 3.5);
-        fab_reminder.setLayoutParams(params2);
-        fab_reminder.startAnimation(fabTwo);
-
-    }
-
-    private void Back() {
-
-        FrameLayout.LayoutParams params1 = (FrameLayout.LayoutParams) fab_add.getLayoutParams();
-        params1.bottomMargin -= (int) (fab_add.getWidth() * 2.3);
-        fab_add.setLayoutParams(params1);
-        fab_add.startAnimation(fabOne);
-
-        FrameLayout.LayoutParams params2 = (FrameLayout.LayoutParams) fab_reminder.getLayoutParams();
-        params2.bottomMargin -= (int) (fab_reminder.getWidth() * 3.5);
-        fab_reminder.setLayoutParams(params2);
-        fab_reminder.startAnimation(fabTwo);
 
     }
 

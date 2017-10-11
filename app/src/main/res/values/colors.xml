@@ -2,7 +2,7 @@
 <resources>
 
     <color name="colorPrimary">#00BCD4</color>
-    <color name="colorPrimaryDark">#00BCD4</color>
+    <color name="colorPrimaryDark">#0097A7</color>
     <color name="colorAccent">#009688</color>
     <color name="colorOverlay">#78ffffff</color>
     <color name="colorAccentDefault">#FF4081</color>
@@ -10,17 +10,23 @@
     <color name="colorTransparentBlack">#14000000</color>
     <color name="colorPrimaryTransparent">#6400bcd4</color>
 
-    <color name="fab_main">#E91E63</color>
-    <color name="fab_add">#8D6E63</color>
-    <color name="fab_reminder">#FF9800</color>
+    <color name="fab_main">#FFEB3B</color>
     <color name="white_overlay">#EEEEEE</color>
     <color name="white">#FFFFFF</color>
-    <color name="cardview">#FFEB3B</color>
+    <color name="cardview">#F4FF81</color>
     <color name="text">#000000</color>
     <color name="bt_yes">#9C27B0</color>
     <color name="bt_no">#F44336</color>
-    <color name="button_add">#03A9F4</color>
+    <color name="button_add">#2DCC70</color>
     <color name="note_add">#4CAF50</color>
+    <color name="takeimage">#FF5722</color>
+    <color name="chooseimage">#2196F3</color>
+    <color name="et_title">#FFEB3B</color>
+    <color name="et_note">#76FF03</color>
+    <color name="bgadd">#FFEB3B</color>
+    <color name="colordialog">#FF9800</color>
 
+    <color name="colorPrimaryCustom">#FFAB91</color>
+    <color name="colorPrimaryDarkCustom">#FF8A56</color>
 
 </resources>

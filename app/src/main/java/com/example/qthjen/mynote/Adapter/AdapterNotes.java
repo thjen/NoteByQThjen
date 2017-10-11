@@ -3,8 +3,10 @@ package com.example.qthjen.mynote.Adapter;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.icu.util.Calendar;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -13,14 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.qthjen.mynote.Activity.ActivityNotes;
 import com.example.qthjen.mynote.Activity.MainActivity;
 import com.example.qthjen.mynote.Model.Notes;
 import com.example.qthjen.mynote.R;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class AdapterNotes extends RecyclerView.Adapter<AdapterNotes.ViewHolder> {
@@ -33,6 +37,7 @@ public class AdapterNotes extends RecyclerView.Adapter<AdapterNotes.ViewHolder> 
     String title;
     String note;
     String date;
+    byte[] mImage;
 
     public AdapterNotes(Context context, List<Notes> list, int layout) {
         this.context = context;
@@ -62,6 +67,11 @@ public class AdapterNotes extends RecyclerView.Adapter<AdapterNotes.ViewHolder> 
         holder.tv_note.setText(list.get(position).getNote());
 
         holder.tv_date.setText(list.get(position).getDate());
+        
+        byte[] iimage = list.get(position).getImage();
+        //Bitmap bitmap = BitmapFactory.decodeByteArray(iimage, 0, iimage.length);
+        //holder.image_row.setImageBitmap(bitmap);
+        Glide.with(context).load(iimage).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.image_row);
 
     }
 
@@ -80,6 +90,7 @@ public class AdapterNotes extends RecyclerView.Adapter<AdapterNotes.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_note, tv_title, tv_date;
+        ImageView image_row;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -87,6 +98,7 @@ public class AdapterNotes extends RecyclerView.Adapter<AdapterNotes.ViewHolder> 
             tv_note = (TextView) itemView.findViewById(R.id.tv_note);
             tv_title = (TextView) itemView.findViewById(R.id.tv_title);
             tv_date = itemView.findViewById(R.id.tv_date);
+            image_row = itemView.findViewById(R.id.row_image);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -150,8 +162,10 @@ public class AdapterNotes extends RecyclerView.Adapter<AdapterNotes.ViewHolder> 
                     title = list.get(getAdapterPosition()).getTitle();
                     note = list.get(getAdapterPosition()).getNote();
                     date = list.get(getAdapterPosition()).getDate();
+                    mImage = list.get(getAdapterPosition()).getImage();
 
-                    Notes notes = new Notes(id, title, note, date);
+                    Notes notes = new Notes(id, title, note, date, mImage);
+
                     Intent intent = new Intent(context, ActivityNotes.class);
                     intent.putExtra("mynotes", notes);
                     context.startActivity(intent);

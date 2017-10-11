@@ -1,49 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
 
     <LinearLayout
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:orientation="horizontal"
-        android:gravity="end"
         android:weightSum="2"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:weightSum="2"
-            android:background="@color/text"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/ll_takephoto"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
 
-            <ImageView
+            <Button
+                android:background="@drawable/button_takephoto"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:text="@string/takePhoto"
                 android:onClick="TakeByCamera"
                 android:id="@+id/iv_camera"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:src="@drawable/addphoto"
-                android:background="@color/colorPrimary"
-                android:layout_weight="1"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-            <ImageView
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/ll_choosephoto"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <Button
+                android:background="@drawable/button_chooselibrary"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:text="@string/photoLibrary"
                 android:onClick="TakeByFile"
                 android:id="@+id/iv_takefile"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:src="@drawable/addimage"
-                android:background="@color/colorPrimary"
-                android:layout_weight="1"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
         </LinearLayout>
 
     </LinearLayout>
+
 
 </RelativeLayout>

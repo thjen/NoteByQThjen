@@ -94,7 +94,7 @@ public class Weather extends AppCompatActivity {
                     JSONObject jsonObjectWeather = jsonArrayRequest.getJSONObject(0);
                     String status = jsonObjectWeather.getString("main");
                     String icon = jsonObjectWeather.getString("icon");
-                    /** hàm lấy ảnh picasso **/
+
                     Picasso.with(Weather.this).load("http://openweathermap.org/img/w/" + icon + ".png").into(iv_status);
                     tv_status.setText("Status: " + status);
 

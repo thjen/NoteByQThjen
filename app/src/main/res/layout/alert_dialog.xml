@@ -7,7 +7,7 @@
     android:weightSum="5">
 
     <LinearLayout
-        android:background="@color/fab_reminder"
+        android:background="@color/colordialog"
         android:orientation="horizontal"
         android:layout_weight="2.5"
         android:layout_width="match_parent"
