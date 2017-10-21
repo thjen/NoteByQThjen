@@ -13,7 +13,6 @@ import com.example.qthjen.mynote.R;
 public class FragmentNodeAndReminder extends Fragment {
 
     public static ImageView iv_note;
-    public static ImageView iv_calendar;
     public static ImageView iv_reminder;
 
     @Nullable
@@ -23,7 +22,6 @@ public class FragmentNodeAndReminder extends Fragment {
         View view = inflater.inflate(R.layout.fragment_node_and_calendar, container, false);
 
         iv_note = (ImageView) view.findViewById(R.id.iv_notes);
-        iv_calendar = (ImageView) view.findViewById(R.id.iv_calendar);
         iv_reminder = (ImageView) view.findViewById(R.id.iv_reminder);
 
         return view;

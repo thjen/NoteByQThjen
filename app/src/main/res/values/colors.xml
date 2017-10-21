@@ -29,4 +29,6 @@
     <color name="colorPrimaryCustom">#FFAB91</color>
     <color name="colorPrimaryDarkCustom">#FF8A56</color>
 
+    <color name="buttondate">#FFC107</color>
+
 </resources>

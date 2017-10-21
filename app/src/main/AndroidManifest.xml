@@ -43,16 +43,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.Calendar"
-            android:theme="@style/AppThemeNoActionBar"
-            android:label="@string/weather">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".Activity.ActivityNotes"
             android:theme="@style/AppThemeNoActionBar"
             android:label="@string/weather">
@@ -71,11 +61,17 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+        </activity>
+
+        <activity android:name=".Activity.AddReminder"
+            android:theme="@style/AppThemeNoActionBar"
+            android:label="@string/weather">
+            <intent-filter>
+                <action android:name="android.intent.action.REMINDERS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
     </application>
 

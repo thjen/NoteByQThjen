@@ -1,13 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:background="@color/colorPrimary"
+        android:id="@+id/tbar_Reminder"
+        app:title="@string/home"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:weightSum="2"
+        android:layout_above="@+id/fragment_reminder"
+        android:layout_below="@+id/tbar_Reminder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Reminders"
-        android:textSize="30sp"/>
+        android:orientation="vertical">
 
-</LinearLayout>
+        <FrameLayout
+            android:layout_weight="0.7"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <LinearLayout
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:weightSum="2"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1.85"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:hint="@string/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/search_reminder"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageView
+                        android:layout_weight="0.15"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/search"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/myReminder"
+                android:textSize="20sp"
+                android:textColor="@color/text"
+                android:paddingLeft="85dp"/>
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="bottom|left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plus"
+                android:visibility="visible"
+                android:id="@+id/fab_AddReminder"
+                app:backgroundTint="@color/fab_main"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_marginTop="20dp"
+            android:layout_weight="1.3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/tv_addReminder"
+                android:textSize="40sp"
+                android:text="@string/add_reminder"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.baoyz.swipemenulistview.SwipeMenuListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/swipe_listviewReminder">
+
+            </com.baoyz.swipemenulistview.SwipeMenuListView>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <fragment
+        android:name="com.example.qthjen.mynote.Fragment.FragmentNodeAndReminder"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/fragment_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"/>
+
+</RelativeLayout>

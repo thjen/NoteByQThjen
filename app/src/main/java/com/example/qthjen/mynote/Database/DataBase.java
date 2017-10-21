@@ -33,6 +33,34 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
+    public void UPDATE_REMINDERS(String note, String date, int id ) {
+
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        String sqlUpdateReminder = "UPDATE Reminders SET note = ?, date = ? WHERE id = '" + id + "'";
+        SQLiteStatement sqLiteStatement = sqLiteDatabase.compileStatement(sqlUpdateReminder);
+
+        sqLiteStatement.bindString(1, note);
+        sqLiteStatement.bindString(2, date);
+
+        sqLiteStatement.execute();
+        sqLiteDatabase.close();
+
+    }
+
+    public void INSERT_REMINDERS(String note, String date) {
+
+        SQLiteDatabase database = getWritableDatabase();
+        String sql = "INSERT INTO Reminders VALUES(null, ?,?)";
+        SQLiteStatement statement = database.compileStatement(sql);
+        statement.clearBindings();
+
+        statement.bindString(1, note);
+        statement.bindString(2, date);
+
+        statement.executeInsert();
+
+    }
+
     public void INSERT_ITEMS(String title, String note, String date, byte[] image) {
 
         SQLiteDatabase database = getWritableDatabase();

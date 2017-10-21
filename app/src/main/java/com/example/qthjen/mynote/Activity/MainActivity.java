@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         dataBase = new DataBase(this, "mynote.sqlite", null, 1);
         dataBase.QueryData("CREATE TABLE IF NOT EXISTS Notes(Id INTEGER PRIMARY KEY AUTOINCREMENT, Title VARCHAR, Note VARCHAR, Date VARCHAR, Image BLOB)");
+        dataBase.QueryData("CREATE TABLE IF NOT EXISTS Reminders(id INTEGER PRIMARY KEY AUTOINCREMENT, note VARCHAR, date VARCHAR)");
 
         EventClick();
 
@@ -138,12 +139,7 @@ public class MainActivity extends AppCompatActivity {
     private void processedFragment() {
 
         FragmentNodeAndReminder fragmentNodeAndReminder = (FragmentNodeAndReminder) getFragmentManager().findFragmentById(R.id.fragmen_nodeAndReminders);
-        fragmentNodeAndReminder.iv_calendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Calendar.class));
-            }
-        });
+
         fragmentNodeAndReminder.iv_reminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
